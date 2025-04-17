@@ -1,0 +1,29 @@
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libc-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy .env file for environment variables (if needed)
+COPY .env /app/.env
+
+# Expose port 8000 to the outside world
+EXPOSE 8000
+
+# Set environment variables for FastAPI (optional)
+ENV PYTHONUNBUFFERED=1
+
+# Run uvicorn to serve the FastAPI application
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
