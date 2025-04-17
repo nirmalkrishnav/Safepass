@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# FastAPI & Uvicorn
+*.log
+
+# Virtual environment
+venv/
+.env/
+.env.*
+
+# IDEs
+.vscode/
+.idea/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Redis DB dump (if applicable)
+dump.rdb
